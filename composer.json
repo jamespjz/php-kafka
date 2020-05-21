@@ -1,0 +1,22 @@
+{
+    "name": "jamespi/php-kafka",
+    "description": "依托weiboad/kafka-php的开源项目进行了再次简单的封装的一个kafka插件",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "pijianzhong",
+            "email": "jianzhongpi@163.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+		"php":">=7.0",
+        "nmred/kafka-php": "v0.2.0.8"
+	},
+    "autoload": {
+        "psr-4": {
+            "Jamespi\\kafka\\": "Src/"
+        }
+    }
+}
