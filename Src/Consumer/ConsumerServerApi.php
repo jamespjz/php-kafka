@@ -6,7 +6,7 @@
  * Time: 10:45
  */
 
-namespace Jamespi\KafKa\Consumer\ConsumerServerApi;
+namespace Jamespi\KafKa\Consumer;
 
 use Jamespi\KafKa\Common\Common;
 use Jamespi\KafKa\Common\Basic;

@@ -6,7 +6,7 @@
  * Time: 10:45
  */
 
-namespace Jamespi\KafKa\Producer\ProducerServerApi;
+namespace Jamespi\KafKa\Producer;
 
 use Jamespi\KafKa\Common\Common;
 use Jamespi\KafKa\Common\Basic;
