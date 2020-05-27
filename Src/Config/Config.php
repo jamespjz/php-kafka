@@ -13,9 +13,7 @@
 return [
     'Basic' =>[
         'host' => '192.168.109.53',
-        'port' => '9092',
-        'username' => 'guest',
-        'password' => 'guest'
+        'port' => '9092'
     ],
     /** 生产端 **/
     'is_async' => false, //是否同步模式【系统默认同步开启,若无特殊需求可不必写入】

@@ -10,7 +10,7 @@
  * +----------------------------------------------------------------------
  */
 
-namespace Jamespi\RabbitMQ\Common;
+namespace Jamespi\KafKa\Common;
 
 
 class Common

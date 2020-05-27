@@ -65,7 +65,7 @@ class ProducerServerApi extends Basic
                     $result = $producer->send(array(
                         array(
                             'topic' => $this->paramConfig['topic'],
-                            'value' => $this->paramConfig['msg'],
+                            'value' => $this->paramConfig['msg'][$i],
                             'key' => $this->paramConfig['key'],
                         ),
                     ));

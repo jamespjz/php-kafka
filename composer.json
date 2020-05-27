@@ -16,7 +16,7 @@
 	},
     "autoload": {
         "psr-4": {
-            "Jamespi\\kafka\\": "Src/"
+            "Jamespi\\KafKa\\": "Src/"
         }
     }
 }
