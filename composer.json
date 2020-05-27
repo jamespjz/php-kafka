@@ -12,7 +12,7 @@
     "minimum-stability": "dev",
     "require": {
 		"php":">=7.0",
-		"nmred/kafka-php": "0.2.*",
+		"nmred/kafka-php": "0.2.*"
 	},
     "autoload": {
         "psr-4": {
