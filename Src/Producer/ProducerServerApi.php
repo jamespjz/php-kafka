@@ -32,12 +32,12 @@ class ProducerServerApi extends Basic
     public function addMessage()
     {
         $this->init();
-        $this->config->setMetadataRefreshIntervalMs($this->paramConfig['refresh_interval_time']);
-        $this->config->setMetadataBrokerList($this->paramConfig['Basic']['host'], $this->paramConfig['Basic']['port']);
-        $this->config->setBrokerVersion($this->paramConfig['broker_version']);
-        $this->config->setRequiredAck($this->paramConfig['required_ack']);
-        $this->config->setIsAsyn($this->paramConfig['is_async']);
-        $this->config->setProduceInterval($this->paramConfig['produce_interval_time']);
+        $this->setMetadataRefreshIntervalMs($this->paramConfig['refresh_interval_time']);
+        $this->setMetadataBrokerList($this->paramConfig['Basic']['host'], $this->paramConfig['Basic']['port']);
+        $this->setBrokerVersion($this->paramConfig['broker_version']);
+        $this->setRequiredAck($this->paramConfig['required_ack']);
+        $this->setIsAsyn($this->paramConfig['is_async']);
+        $this->setProduceInterval($this->paramConfig['produce_interval_time']);
 
         if ($this->paramConfig['is_async']){
             //异步
@@ -51,26 +51,28 @@ class ProducerServerApi extends Basic
                 ];
             });
             $producer->success(function($result) {
-                var_dump($result);
+                return Common::resultMsg('success', '发送消息成功', $result);
             });
             $producer->error(function($errorCode) {
-                var_dump($errorCode);
+                return Common::resultMsg('failed', '发送消息失败，Error：'.$errorCode);
             });
             $producer->send(true);
         }else{
             //同步
             $producer = new \Kafka\Producer();
-            if ($this->paramConfig['is_batch']){
-                for($i = 0; $i < $this->paramConfig['batch_number']; $i++) {
-                    $result = $producer->send(array(
-                        array(
-                            'topic' => $this->paramConfig['topic'],
-                            'value' => $this->paramConfig['msg'][$i],
-                            'key' => $this->paramConfig['key'],
-                        ),
-                    ));
+            for($i = 0; $i < $this->paramConfig['batch_number']; $i++) {
+                $result = $producer->send([
+                    [
+                        'topic' => $this->paramConfig['topic'],
+                        'value' => $this->paramConfig['msg'][$i],
+                        'key' => $this->paramConfig['key'],
+                    ],
+                ]);
+                if (!$result){
+                    return Common::resultMsg('failed', '发送消息失败');
                 }
             }
+            return Common::resultMsg('success', '发送消息成功');
         }
     }
 
